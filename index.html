@@ -1041,7 +1041,7 @@
     document.getElementById('toggleAll').textContent = expanded ? I18N[lang].toggleCollapse : I18N[lang].toggleExpand;
     document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
     const nextLink = document.getElementById('nextPageLink');
-    if (nextLink) nextLink.href = 'onboarding-esocial-mapeamento-campos_det.html?lang=' + lang;
+    if (nextLink) nextLink.href = 'field_details.html?lang=' + lang;
   }
 
   document.querySelectorAll('.lang-btn').forEach(btn => {
