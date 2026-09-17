@@ -1,0 +1,1065 @@
+<!DOCTYPE html>
+<html lang="pt-BR" id="htmlRoot">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">Onboarding eSocial v2 — Só Portal Download</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600;700;900&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Paleta oficial Buk */
+    --azul:#2F4DAA;
+    --azul-escuro:#2B3B6A;
+    --amarelo:#F9B82C;
+    --celeste:#D9E3FC;
+    --branco:#FFFFFF;
+
+    /* Neutros de texto (padrão da plantilla oficial) */
+    --texto:#434343;
+    --texto-muted:#595959;
+    --texto-faint:#8B8B8B;
+
+    --borda:#E2E0D8;
+    --borda-forte:#C7CCE0;
+
+    --tint-a:rgba(47,77,170,.06);
+    --tint-b:rgba(43,59,106,.06);
+    --tint-amarelo:rgba(249,184,44,.16);
+
+    --sans:'Source Sans 3', system-ui, -apple-system, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background:var(--branco);
+    color:var(--texto);
+    font-family:var(--sans);
+    line-height:1.5;
+    padding:40px 24px 90px;
+    -webkit-font-smoothing:antialiased;
+  }
+
+  .wrap{max-width:1000px;margin:0 auto;}
+
+  /* ---------- Seletor de idioma ---------- */
+  .lang-switch{
+    display:flex;
+    justify-content:flex-end;
+    gap:6px;
+    margin-bottom:18px;
+  }
+  .lang-btn{
+    font-family:var(--sans);
+    font-weight:700;
+    font-size:12.5px;
+    background:var(--branco);
+    color:var(--texto-faint);
+    border:1.5px solid var(--borda-forte);
+    padding:6px 14px;
+    border-radius:20px;
+    cursor:pointer;
+    transition:all .15s ease;
+  }
+  .lang-btn:hover{border-color:var(--azul);color:var(--azul);}
+  .lang-btn.active{background:var(--azul);color:var(--branco);border-color:var(--azul);}
+
+  /* ---------- Header ---------- */
+  header{
+    margin-bottom:34px;
+    padding-bottom:22px;
+    border-bottom:2px solid var(--azul-escuro);
+  }
+  .brand-row{
+    display:flex;
+    align-items:baseline;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    margin-bottom:14px;
+  }
+  .brand{
+    font-weight:900;
+    font-size:15px;
+    color:var(--azul);
+    letter-spacing:.01em;
+  }
+  .brand span{color:var(--azul-escuro);}
+  .brand-meta{
+    font-size:12.5px;
+    color:var(--texto-faint);
+  }
+  h1{
+    font-size:29px;
+    font-weight:700;
+    color:var(--azul-escuro);
+    margin:0 0 10px;
+    letter-spacing:-.01em;
+    max-width:820px;
+  }
+  header p.lead{
+    color:var(--texto-muted);
+    max-width:780px;
+    margin:0 0 16px;
+    font-size:15px;
+  }
+
+  .legend{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px 26px;
+    align-items:center;
+    margin-top:20px;
+  }
+  .legend-label{
+    font-size:12px;
+    color:var(--texto-faint);
+    margin-right:2px;
+  }
+  .legend-group{display:flex;gap:8px;align-items:center;font-size:13px;color:var(--texto-muted);}
+
+  .toolbar{display:flex;justify-content:flex-end;margin:18px 0 22px;}
+  #toggleAll{
+    font-family:var(--sans);
+    font-weight:600;
+    font-size:13px;
+    background:var(--branco);
+    color:var(--azul);
+    border:1.5px solid var(--azul);
+    padding:8px 16px;
+    border-radius:8px;
+    cursor:pointer;
+  }
+  #toggleAll:hover{background:var(--azul);color:var(--branco);}
+
+  /* ---------- Badges de status ---------- */
+  .badge{
+    font-family:var(--sans);
+    font-size:11.5px;
+    font-weight:700;
+    padding:4px 11px;
+    border-radius:20px;
+    white-space:nowrap;
+    border:1.5px solid transparent;
+  }
+  .badge-auto{background:var(--azul);color:var(--branco);}
+  .badge-semi{background:var(--celeste);color:var(--azul-escuro);border-color:var(--borda-forte);}
+  .badge-manual{background:var(--amarelo);color:var(--azul-escuro);}
+  .badge-decisao{background:var(--branco);color:#B87800;border-color:var(--amarelo);border-style:dashed;}
+
+  /* ---------- Trilha do dia (timeline) ---------- */
+  .phase{display:flex;gap:20px;align-items:stretch;margin-bottom:8px;}
+  .day-rail{
+    flex:0 0 46px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:center;
+    position:relative;
+    padding-top:6px;
+  }
+  .day-rail::before{
+    content:"";
+    position:absolute;
+    top:0;bottom:-8px;left:50%;
+    width:2px;
+    background:var(--borda-forte);
+    transform:translateX(-50%);
+  }
+  .day-rail span{
+    position:relative;
+    background:var(--branco);
+    padding:6px 0;
+    font-weight:700;
+    font-size:13px;
+    color:var(--azul-escuro);
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+  }
+
+  .lane{flex:1;display:flex;flex-direction:column;gap:12px;max-width:780px;}
+  .lane-title{
+    margin:0 0 2px;
+    font-size:14px;
+    font-weight:700;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    color:var(--texto);
+  }
+  .lane-title .dot{width:9px;height:9px;border-radius:50%;flex:0 0 auto;background:var(--azul-escuro);}
+
+  /* ---------- Cards ---------- */
+  details.card{
+    background:var(--tint-b);
+    border:1.5px solid var(--borda);
+    border-radius:10px;
+    overflow:hidden;
+  }
+  details.card[open]{border-color:var(--borda-forte);}
+  details.card.card-final{background:var(--branco);}
+  details.card.card-open-decision{background:var(--tint-amarelo);border-color:var(--amarelo);}
+
+  summary{
+    list-style:none;
+    cursor:pointer;
+    padding:14px 15px;
+    display:flex;
+    align-items:flex-start;
+    justify-content:space-between;
+    gap:12px;
+  }
+  summary::-webkit-details-marker{display:none;}
+  summary::marker{content:"";}
+
+  .s-main{display:flex;flex-direction:column;gap:5px;flex:1;min-width:0;}
+  .s-title{font-size:14.5px;font-weight:700;color:var(--texto);}
+  .s-sub{font-size:12.5px;color:var(--texto-muted);}
+
+  .s-side{display:flex;align-items:center;gap:10px;flex:0 0 auto;}
+  .chev{
+    width:16px;height:16px;flex:0 0 auto;
+    color:var(--texto-faint);
+    transition:transform .15s ease;
+    margin-top:2px;
+  }
+  details[open] .chev{transform:rotate(90deg);}
+
+  .card-body{padding:0 15px 17px 15px;border-top:1px solid var(--borda);}
+  .card-body{padding-top:13px;}
+  .card-body p{margin:0 0 10px;font-size:13.5px;color:var(--texto-muted);text-align:left;}
+  .card-body p:last-child{margin-bottom:0;}
+  .card-body strong{color:var(--texto);font-weight:700;}
+  .card-body ul{margin:0 0 10px;padding-left:19px;font-size:13.5px;color:var(--texto-muted);}
+  .card-body ul li{margin-bottom:6px;}
+  .card-body ul li:last-child{margin-bottom:0;}
+
+  .events{display:flex;flex-wrap:wrap;gap:6px;margin:2px 0 12px;}
+  .ev-chip{
+    font-size:12px;
+    font-weight:600;
+    color:var(--azul-escuro);
+    background:var(--celeste);
+    padding:3px 9px;
+    border-radius:5px;
+  }
+
+  .kv{display:grid;grid-template-columns:auto 1fr;gap:5px 14px;font-size:13px;margin-bottom:11px;}
+  .kv dt{color:var(--texto-faint);font-size:11.5px;text-transform:uppercase;letter-spacing:.04em;padding-top:2px;font-weight:600;}
+  .kv dd{margin:0;color:var(--texto-muted);}
+  .kv dd code{font-size:12.5px;color:var(--azul-escuro);background:var(--celeste);padding:1px 6px;border-radius:4px;font-family:var(--sans);font-weight:600;}
+
+  .callout{
+    display:flex;gap:10px;
+    background:var(--tint-amarelo);
+    border:1px solid var(--amarelo);
+    color:#5A3E00;
+    border-radius:8px;
+    padding:11px 13px;
+    font-size:13px;
+    margin:2px 0 12px;
+  }
+  .callout strong{color:#5A3E00;}
+  .callout .ic{flex:0 0 auto;color:#B87800;font-weight:700;}
+
+  .note{
+    display:flex;gap:10px;
+    background:var(--celeste);
+    border-radius:8px;
+    padding:11px 13px;
+    font-size:13px;
+    color:var(--azul-escuro);
+    margin:2px 0 12px;
+  }
+  .note .ic{flex:0 0 auto;font-weight:700;}
+
+  .stack-box{
+    background:var(--tint-b);
+    border:1.5px solid var(--borda);
+    border-radius:10px;
+    max-width:780px;
+    overflow:hidden;
+  }
+  .stack-row{padding:13px 16px;}
+  .stack-row + .stack-row{border-top:1px solid var(--borda);}
+  .stack-row .sr-label{
+    display:block;
+    font-size:11px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.04em;
+    color:var(--azul);
+    margin-bottom:5px;
+  }
+  .stack-row p{margin:0;font-size:13.5px;color:var(--texto-muted);}
+  .stack-row.is-decision .sr-label{color:#B87800;}
+  .stack-row.is-decision{background:var(--tint-amarelo);}
+
+  .connector{
+    display:flex;
+    justify-content:center;
+    margin:0 0 6px;
+  }
+  .connector::before{
+    content:"";
+    width:2px;height:28px;
+    background:var(--borda-forte);
+    margin-left:46px;
+  }
+
+  h2.section-title{font-size:18px;font-weight:700;color:var(--azul-escuro);margin:0 0 6px;}
+  p.section-lead{font-size:13.5px;color:var(--texto-muted);margin:0 0 16px;max-width:780px;}
+
+  .simple-table{overflow-x:auto;border:1.5px solid var(--borda);border-radius:10px;}
+  .simple-table table{width:100%;border-collapse:collapse;font-size:13px;min-width:640px;}
+  .simple-table th{text-align:left;padding:10px 14px;color:var(--azul-escuro);font-weight:700;background:var(--celeste);}
+  .simple-table td{padding:11px 14px;color:var(--texto-muted);border-top:1px solid var(--borda);}
+  .simple-table td.strong{font-weight:600;color:var(--texto);}
+  .simple-table td code{font-size:12.5px;color:var(--azul-escuro);background:var(--celeste);padding:1px 6px;border-radius:4px;font-weight:600;}
+
+  .out-of-scope{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:10px;}
+  .out-of-scope li{
+    display:flex;gap:10px;
+    padding:11px 14px;
+    background:var(--tint-b);
+    border:1.5px solid var(--borda);
+    border-radius:8px;
+    font-size:13.5px;
+    color:var(--texto-muted);
+  }
+  .out-of-scope li .ic{flex:0 0 auto;color:var(--texto-faint);font-weight:700;}
+  .out-of-scope li strong{color:var(--texto);font-weight:700;}
+
+  .event-glossary{
+    display:grid;
+    grid-template-columns:repeat(2, 1fr);
+    gap:8px 16px;
+    max-width:780px;
+    margin:14px 0 20px;
+    padding:14px 16px;
+    background:var(--tint-a);
+    border:1.5px solid var(--borda);
+    border-radius:10px;
+  }
+  .eg-item{display:flex;align-items:baseline;gap:8px;font-size:13px;color:var(--texto-muted);}
+  .eg-item .ev-chip{flex:0 0 auto;}
+  @media (max-width:600px){.event-glossary{grid-template-columns:1fr;}}
+
+  footer{
+    margin-top:44px;
+    padding-top:18px;
+    border-top:1.5px solid var(--borda);
+    font-size:12px;
+    color:var(--texto-faint);
+  }
+  footer p{margin:0 0 6px;}
+
+  .page-nav{display:flex;justify-content:center;margin:44px 0 0;}
+  .page-nav-link{
+    display:inline-flex;align-items:center;gap:8px;
+    font-family:var(--sans);font-weight:700;font-size:14px;
+    color:var(--branco);background:var(--azul);
+    padding:12px 22px;border-radius:10px;
+    text-decoration:none;
+    border:1.5px solid var(--azul);
+    transition:all .15s ease;
+  }
+  .page-nav-link:hover{background:var(--azul-escuro);border-color:var(--azul-escuro);}
+
+  @media (max-width:820px){
+    .phase{flex-direction:column;gap:10px;}
+    .day-rail{flex-direction:row;justify-content:flex-start;height:auto;padding:2px 0;}
+    .day-rail::before{display:none;}
+    .day-rail span{writing-mode:horizontal-tb;transform:none;padding:0;}
+    .connector::before{margin-left:0;}
+    .brand-row{flex-direction:column;align-items:flex-start;gap:6px;}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <div class="lang-switch">
+    <button class="lang-btn active" type="button" data-lang="pt">PT-BR</button>
+    <button class="lang-btn" type="button" data-lang="es">ES-CL</button>
+  </div>
+
+  <header>
+    <div class="brand-row">
+      <div class="brand" data-i18n="brand">·buk·<span> Folha de Pagamento — Brasil</span></div>
+      <div class="brand-meta" data-i18n="brandMeta">Onboarding eSocial · v2 · Só Portal Download</div>
+    </div>
+    <h1 data-i18n="docTitle">Onboarding eSocial v2 — Só Portal Download</h1>
+    <p class="lead" data-i18n="lead">Versão reduzida do fluxo de importação com foco nos dados que onboarding da Buk precisa</p>
+
+    <div class="legend">
+      <span class="legend-group"><span class="legend-label" data-i18n="legendStatus">Status</span></span>
+      <span class="legend-group"><span class="badge badge-auto" data-i18n="badgeAuto">automatizado</span></span>
+      <span class="legend-group"><span class="badge badge-semi" data-i18n="badgeSemi">semi-automático</span></span>
+      <span class="legend-group"><span class="badge badge-manual" data-i18n="badgeManual">manual</span></span>
+      <span class="legend-group"><span class="badge badge-decisao" data-i18n="badgeDecisao">decisão em aberto</span></span>
+    </div>
+  </header>
+
+  <!-- ======================= ESCOPO DE DADOS ======================= -->
+  <section style="margin-bottom:32px;">
+    <h2 class="section-title" data-i18n="scopeTitle">Escopo de dados priorizado</h2>
+    <p class="section-lead" data-i18n="scopeLead">Só os eventos que alimentam as 7 planilhas de onboarding hoje — não a camada cadastral inteira do cliente. Baseado no mapeamento interno entre planilhas de onboarding e eventos eSocial.</p>
+
+    <div class="event-glossary">
+      <div class="eg-item"><span class="ev-chip">S-2200</span><span data-i18n="eg2200">Admissão do trabalhador</span></div>
+      <div class="eg-item"><span class="ev-chip">S-2206</span><span data-i18n="eg2206">Alteração de contrato de trabalho</span></div>
+      <div class="eg-item"><span class="ev-chip">S-1200</span><span data-i18n="eg1200">Remuneração mensal (folha de pagamento)</span></div>
+      <div class="eg-item"><span class="ev-chip">S-1210</span><span data-i18n="eg1210">Pagamentos efetuados ao trabalhador</span></div>
+      <div class="eg-item"><span class="ev-chip">S-1020</span><span data-i18n="eg1020">Tabela de Lotações Tributárias (subáreas/departamentos)</span></div>
+      <div class="eg-item"><span class="ev-chip">S-1010</span><span data-i18n="eg1010">Tabela de Rubricas (códigos de verbas da folha)</span></div>
+    </div>
+
+    <div class="simple-table">
+      <table>
+        <thead>
+          <tr>
+            <th data-i18n="th1">Planilha Buk</th>
+            <th data-i18n="th2">Evento(s) eSocial</th>
+            <th data-i18n="th3">Mecanismo no Portal Download</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="strong" data-i18n="r1c1">Colaboradores</td>
+            <td data-i18n="r1c2"><span class="ev-chip">S-2200</span> grupo <code>trabalhador</code></td>
+            <td data-i18n="r1c3">Filtro "todos os eventos entregues em determinado período"</td>
+          </tr>
+          <tr>
+            <td class="strong" data-i18n="r2c1">Trabalhos</td>
+            <td data-i18n="r2c2"><span class="ev-chip">S-2200</span> grupo <code>vinculo</code> (+ <code>indMV</code> vem do <span class="ev-chip">S-1200</span>)</td>
+            <td data-i18n="idem1">Idem</td>
+          </tr>
+          <tr>
+            <td class="strong" data-i18n="r3c1">Cargos</td>
+            <td data-i18n="r3c2"><code>nmCargo</code>/<code>CBOCargo</code> — texto livre dentro do próprio S-2200</td>
+            <td data-i18n="r3c3">Vem embutido no S-2200; <strong>não existe S-1030</strong> — não precisa de filtro dedicado</td>
+          </tr>
+          <tr style="background:var(--tint-amarelo);">
+            <td class="strong" data-i18n="r4c1">Subáreas</td>
+            <td data-i18n="r4c2"><span class="ev-chip">S-1020</span> Tabela de Lotações Tributárias</td>
+            <td data-i18n="r4c3">Filtro dedicado <strong>"Tabela de Lotações Tributárias"</strong></td>
+          </tr>
+          <tr>
+            <td class="strong" data-i18n="r5c1">Dependentes</td>
+            <td data-i18n="r5c2"><span class="ev-chip">S-2200</span> grupo <code>dependente</code></td>
+            <td data-i18n="r1c3b">Filtro "todos os eventos entregues em determinado período"</td>
+          </tr>
+          <tr>
+            <td class="strong" data-i18n="r6c1">Recibos de Pagamento Históricos</td>
+            <td data-i18n="r6c2"><span class="ev-chip">S-1200</span> (+ <span class="ev-chip">S-1210</span> se decidido gerar pagamento retroativo)</td>
+            <td data-i18n="idem2">Idem</td>
+          </tr>
+          <tr style="background:var(--tint-amarelo);">
+            <td class="strong" data-i18n="r7c1">Referência para <code>codRubr</code></td>
+            <td data-i18n="r7c2"><span class="ev-chip">S-1010</span> Tabela de Rubricas</td>
+            <td data-i18n="r7c3">Filtro dedicado <strong>"Tabela de Rubricas"</strong></td>
+          </tr>
+          <tr>
+            <td class="strong" data-i18n="r8c1">Subáreas e Cargos</td>
+            <td>—</td>
+            <td data-i18n="r8c3">Estrutura interna Buk, não transmitida ao eSocial — não requer busca</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ======================= AJUSTE CENTRAL ======================= -->
+  <section style="margin-bottom:36px;">
+    <h2 class="section-title" data-i18n="planTitle">Planejamento de importação: 12 meses fixos não bastam</h2>
+    <p class="section-lead" data-i18n="planLead">O foco aqui é o <strong style="color:var(--texto);">estado cadastral atual do colaborador</strong>, não só a continuidade de folha.</p>
+
+    <div class="stack-box">
+      <div class="stack-row">
+        <span class="sr-label" data-i18n="lblProblema">Problema</span>
+        <p data-i18n="planProblema">O <strong>S-2200 (admissão)</strong> é transmitido uma única vez, às vezes anos atrás. Um filtro de "últimos 12 meses" não traz esse evento — só alterações recentes.</p>
+      </div>
+      <div class="stack-row">
+        <span class="sr-label" data-i18n="lblAcao">Ação prática</span>
+        <p data-i18n="planAcao">Pedir ao cliente, logo no início, uma <strong>lista de CPFs com data de admissão</strong>, para dimensionar de antemão quantas janelas de 35 dias serão necessárias.</p>
+      </div>
+      <div class="stack-row is-decision">
+        <span class="sr-label" data-i18n="lblDecisaoJanela">Decisão em aberto — como cobrir a janela</span>
+        <p data-i18n="planDecisao"><strong>(a)</strong> Estender o filtro até a admissão mais antiga da base <em>(recomendado)</em>. <strong>(b)</strong> Usar o filtro "por trabalhador" como exceção pontual (reintroduz 1 pedido por CPF).</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="toolbar">
+    <button id="toggleAll" type="button" data-i18n="toggleExpand">expandir tudo</button>
+  </div>
+
+  <!-- ======================= DIA 1 ======================= -->
+  <section class="phase">
+    <div class="day-rail"><span data-i18n="dayRail1">DIA 1</span></div>
+    <div class="lane">
+      <h3 class="lane-title"><span class="dot"></span><span data-i18n="lane1">Dispara os pedidos — Portal Download</span></h3>
+
+      <details class="card">
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c1Title">Filtro "Tabela de Lotações Tributárias"</div>
+            <div class="s-sub" data-i18n="c1Sub">1 pedido dedicado</div>
+          </div>
+          <div class="s-side"><span class="badge badge-manual" data-i18n="badgeManual">manual</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <div class="events"><span class="ev-chip">S-1020</span></div>
+          <p data-i18n="c1Body">Cobre o histórico necessário (ver seção acima) para capturar o S-1020 mesmo se não retransmitido recentemente pelo cliente.</p>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c2Title">Filtro "Tabela de Rubricas"</div>
+            <div class="s-sub" data-i18n="c1Sub">1 pedido dedicado</div>
+          </div>
+          <div class="s-side"><span class="badge badge-manual" data-i18n="badgeManual">manual</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <div class="events"><span class="ev-chip">S-1010</span></div>
+          <p data-i18n="c2Body">Mesma lógica do filtro de Lotações — necessário para resolver <code style="background:var(--celeste);color:var(--azul-escuro);padding:1px 6px;border-radius:4px;font-weight:600;">codRubr</code> em <code style="background:var(--celeste);color:var(--azul-escuro);padding:1px 6px;border-radius:4px;font-weight:600;">Recibos de Pagamento Históricos</code>.</p>
+        </div>
+      </details>
+
+      <details class="card" open>
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c3Title">Filtro "todos os eventos entregues em determinado período"</div>
+            <div class="s-sub" data-i18n="c3Sub">N pedidos em janelas de 35 dias — não mais um número fixo</div>
+          </div>
+          <div class="s-side"><span class="badge badge-manual" data-i18n="badgeManual">manual</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <div class="events">
+            <span class="ev-chip">S-2200</span><span class="ev-chip">S-2206</span><span class="ev-chip">S-1200</span><span class="ev-chip">S-1210</span>
+          </div>
+          <p data-i18n="c3Body"><strong>N deixou de ser fixo</strong> ("~11 pedidos") e virou variável: as janelas cobrem desde a admissão mais antiga da base até hoje (ver seção acima).</p>
+          <dl class="kv">
+            <dt data-i18n="kvLimite">Limite diário</dt><dd data-i18n="kvLimiteVal">Até 12 pedidos/dia; se N não couber, o restante entra na fila do dia seguinte</dd>
+            <dt data-i18n="kvInsumo">Insumo</dt><dd data-i18n="kvInsumoVal">Lista de intake do cliente (CPF + data de admissão)</dd>
+          </dl>
+        </div>
+      </details>
+
+      <div class="callout">
+        <span class="ic">!</span>
+        <span data-i18n="dia1Callout">Sem o BX (webservice do eSocial), não há como pré-validar o volume antes de disparar os pedidos — o dimensionamento de N depende só da qualidade dos dados de intake.</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="connector"></div>
+
+  <!-- ======================= DIAS SEGUINTES ======================= -->
+  <section class="phase">
+    <div class="day-rail"><span data-i18n="dayRailNext">DIAS SEGUINTES</span></div>
+    <div class="lane">
+      <h3 class="lane-title"><span class="dot"></span><span data-i18n="lane2">Processamento e ingestão</span></h3>
+
+      <details class="card">
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c4Title">Acompanhamento do status do pedido</div>
+            <div class="s-sub" data-i18n="c4Sub">Downloads → Consulta</div>
+          </div>
+          <div class="s-side"><span class="badge badge-semi" data-i18n="badgeSemi">semi-automático</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <p data-i18n="c4Body">Sem API pública: alguém confere a tela até o status virar <strong>"Disponível para Baixar"</strong>. Hoje é manual; um RPA poderia automatizar esse polling.</p>
+          <div class="callout">
+            <span class="ic">!</span>
+            <span data-i18n="c4Callout">Prazo real do processamento <strong>não é documentado</strong> — precisa validar antes de comprometer SLA.</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c5Title">Download do arquivo ZIP</div>
+            <div class="s-sub" data-i18n="c5Sub">Coluna "Ações" da tela de Consulta</div>
+          </div>
+          <div class="s-side"><span class="badge badge-manual" data-i18n="badgeManual">manual</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <p data-i18n="c5Body">Clique manual. O arquivo expira em <strong>7 dias</strong> — perdendo o prazo, o pedido inteiro precisa ser refeito.</p>
+        </div>
+      </details>
+
+      <details class="card" open>
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c6Title">Organização em diretório de processamento</div>
+            <div class="s-sub" data-i18n="c6Sub">ex.: /imports/{cliente_id}/download-portal/</div>
+          </div>
+          <div class="s-side"><span class="badge badge-manual" data-i18n="badgeManual">manual</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <p data-i18n="c6Body1">Convenção: <code style="background:var(--celeste);color:var(--azul-escuro);padding:1px 6px;border-radius:4px;font-weight:600;">/imports/{cliente_id}/download-portal/lote-{numero_pedido}.zip</code>.</p>
+          <p data-i18n="c6Body2"><strong>Risco:</strong> depende de alguém seguir a convenção manualmente. <strong>Automatizável:</strong> um conector/RPA eliminaria o passo.</p>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c7Title">Extração do ZIP e leitura dos XMLs</div>
+            <div class="s-sub" data-i18n="c7Sub">watcher no diretório de processamento</div>
+          </div>
+          <div class="s-side"><span class="badge badge-auto" data-i18n="badgeAutomatable">automatizável</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <div class="events">
+            <span class="ev-chip">S-2200</span><span class="ev-chip">S-2206</span><span class="ev-chip">S-1200</span><span class="ev-chip">S-1210</span><span class="ev-chip">S-1020</span><span class="ev-chip">S-1010</span>
+          </div>
+          <p data-i18n="c7Body">Um watcher dispara o processamento assim que cada ZIP chega — sem esperar todos os pedidos ficarem prontos.</p>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c8Title">Identificação da versão do leiaute</div>
+            <div class="s-sub" data-i18n="c8Sub">por namespace do XML embutido</div>
+          </div>
+          <div class="s-side"><span class="badge badge-auto" data-i18n="badgeAuto">automatizado</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <p data-i18n="c8Body">O namespace do XML interno indica a versão original do leiaute (S-1.0/1.2/1.3…) — o Portal Download preserva isso.</p>
+        </div>
+      </details>
+
+      <details class="card" open>
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c9Title">Ingestão incremental na base</div>
+            <div class="s-sub" data-i18n="c9Sub">S-1020/S-1010 primeiro (referências), depois S-2200/S-2206/S-1200 por competência</div>
+          </div>
+          <div class="s-side"><span class="badge badge-auto" data-i18n="badgeAuto">automatizado</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <p data-i18n="c9Body">A ordem importa: tabelas de referência (Lotações, Rubricas) entram primeiro para resolver os códigos citados pelos eventos de vínculo e folha. Cada pedido de 35 dias entra assim que é processado.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <div class="connector"></div>
+
+  <!-- ======================= FECHAMENTO ======================= -->
+  <section class="phase">
+    <div class="day-rail"><span data-i18n="dayRailClose">FECHAMENTO</span></div>
+    <div class="lane">
+      <h3 class="lane-title"><span class="dot"></span><span data-i18n="lane3">Reconciliação e ativação</span></h3>
+
+      <details class="card card-open-decision" open>
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c10Title">Fallback para divergências residuais</div>
+            <div class="s-sub" data-i18n="c10Sub">sem BX, não há reconciliação instantânea por CPF</div>
+          </div>
+          <div class="s-side"><span class="badge badge-decisao" data-i18n="badgeDecisao">decisão em aberto</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <p data-i18n="c10Body">Com o BX (webservice do eSocial), um colaborador com dado incompleto é fechado na hora, consultando direto por CPF. Sem o BX, essa reconciliação instantânea não existe.</p>
+          <ul>
+            <li data-i18n="c10Li1"><strong>Opção 1:</strong> novo pedido "por trabalhador" no Portal (assíncrono, mesma fila de 12/dia)</li>
+            <li data-i18n="c10Li2"><strong>Opção 2:</strong> correção manual pós-ativação</li>
+          </ul>
+          <div class="callout">
+            <span class="ic">!</span>
+            <span data-i18n="c10Callout">Decidir isso <strong>antes de comprometer um SLA formal</strong>.</span>
+          </div>
+        </div>
+      </details>
+
+      <details class="card">
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c11Title">Atenção — Períodos Aquisitivos de férias</div>
+            <div class="s-sub" data-i18n="c11Sub">limitação estrutural do eSocial, não do fluxo Buk</div>
+          </div>
+          <div class="s-side"><span class="badge badge-manual" data-i18n="badgeManual">manual</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <div class="callout">
+            <span class="ic">!</span>
+            <span data-i18n="c11Callout">O eSocial nunca transmitiu esse campo — nenhum canal (webservice ou Portal) consegue recuperá-lo, de nenhum fornecedor. Sem tratamento na revisão final, há risco de férias em dobro na primeira concessão pós-onboarding.</span>
+          </div>
+          <p data-i18n="c11Body">Confirmado em mais de um benchmark de mercado — item de checklist da revisão final, não pendência técnica.</p>
+        </div>
+      </details>
+
+      <details class="card card-final">
+        <summary>
+          <div class="s-main">
+            <div class="s-title" data-i18n="c12Title">Revisão final e ativação do cliente</div>
+            <div class="s-sub" data-i18n="c12Sub">SLA ainda não comprometido formalmente nesta versão</div>
+          </div>
+          <div class="s-side"><span class="badge badge-decisao" data-i18n="badgeDecisao">decisão em aberto</span><svg class="chev" viewBox="0 0 24 24" fill="none"><path d="M9 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></div>
+        </summary>
+        <div class="card-body">
+          <p data-i18n="c12Body">Onboarding confere os dados antes de liberar o cliente. Sem o fechamento instantâneo que o webservice do eSocial (BX) oferece, o prazo formal só pode ser assumido depois de decidir o fallback de divergências (card acima) e o número real de janelas de 35 dias.</p>
+        </div>
+      </details>
+
+    </div>
+  </section>
+
+  <!-- ======================= FORA DO ESCOPO ======================= -->
+  <section style="margin-top:40px;">
+    <h2 class="section-title" data-i18n="oosTitle">Fora do escopo desta versão</h2>
+    <p class="section-lead" data-i18n="oosLead">Fica para uma fase futura — não descartado, só não usado nesta entrega.</p>
+    <ul class="out-of-scope">
+      <li><span class="ic">—</span><span data-i18n="oos1"><strong>Dados cadastrais do empregador e dos estabelecimentos, e processos administrativos/judiciais</strong> <span style="color:var(--texto-faint);">(S-1000, S-1005, S-1070)</span> — não referenciados pelas 7 planilhas atuais.</span></li>
+      <li><span class="ic">—</span><span data-i18n="oos2"><strong>Eventos de Segurança e Saúde no Trabalho — SST</strong> <span style="color:var(--texto-faint);">(S-2240 e correlatos)</span>, como adicionais de insalubridade/periculosidade — possível extensão futura, não prioridade agora.</span></li>
+      <li><span class="ic">—</span><span data-i18n="oos3"><strong>Evento de pagamento</strong> <span style="color:var(--texto-faint);">(S-1210)</span> — gerar ou não o pagamento retroativo é decisão de compliance, não técnica.</span></li>
+      <li><span class="ic">—</span><span data-i18n="oos4"><strong>Toda a arquitetura via webservice do eSocial (BX)</strong> — visão de médio/longo prazo, não usada nesta entrega.</span></li>
+    </ul>
+  </section>
+
+  <!-- ======================= RISCOS ======================= -->
+  <section style="margin-top:36px;">
+    <h2 class="section-title" data-i18n="riskTitle">Riscos específicos desta versão</h2>
+    <p class="section-lead" data-i18n="riskLead">Além dos já listados na estratégia principal.</p>
+    <div class="simple-table">
+      <table>
+        <tbody>
+          <tr>
+            <td class="strong" style="width:42%;" data-i18n="risk1a">Filtros de Lotações/Rubricas: vigente ou só o transmitido no período?</td>
+            <td data-i18n="risk1b">Precisa validar empiricamente — pode voltar vazio mesmo com dado ativo.</td>
+          </tr>
+          <tr>
+            <td class="strong" data-i18n="risk2a">Nº de janelas de 35 dias depende da lista de intake</td>
+            <td data-i18n="risk2b">Lista incompleta = número de pedidos incerto.</td>
+          </tr>
+          <tr>
+            <td class="strong" data-i18n="risk3a">Sem o webservice do eSocial (BX), fallback para divergências ainda em aberto</td>
+            <td data-i18n="risk3b">Ver card "Fallback para divergências residuais".</td>
+          </tr>
+          <tr>
+            <td class="strong" data-i18n="risk4a"><code>codLotacao</code> pode só aparecer no S-1200, não no S-2200</td>
+            <td data-i18n="risk4b">Se confirmado, ingestão de Subáreas espera o 1º S-1200 do colaborador.</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="page-nav">
+    <a class="page-nav-link" id="nextPageLink" href="onboarding-esocial-mapeamento-campos_det.html">
+      <span data-i18n="navNextLabel">Ver mapeamento campo a campo das 7 planilhas →</span>
+    </a>
+  </div>
+
+  <footer>
+    <p data-i18n="foot1">Recorte simplificado da estratégia principal de automação de importação eSocial, cruzado com o mapeamento entre planilhas de onboarding e eventos eSocial.</p>
+    <p data-i18n="foot2">Itens marcados como "decisão em aberto" ainda não têm resolução — não devem ser lidos como compromisso de produto ou SLA.</p>
+  </footer>
+
+</div>
+
+<script>
+  const I18N = {
+    pt: {
+      brand: '·buk·<span> Folha de Pagamento — Brasil</span>',
+      brandMeta: 'Onboarding eSocial · v2 · Só Portal Download',
+      docTitle: 'Onboarding eSocial v2 — Só Portal Download',
+      lead: 'Versão reduzida do fluxo de importação com foco nos dados que onboarding da Buk precisa',
+      legendStatus: 'Status',
+      badgeAuto: 'automatizado',
+      badgeSemi: 'semi-automático',
+      badgeManual: 'manual',
+      badgeDecisao: 'decisão em aberto',
+      badgeAutomatable: 'automatizável',
+      scopeTitle: 'Escopo de dados priorizado',
+      scopeLead: 'Só os eventos que alimentam as 7 planilhas de onboarding hoje — não a camada cadastral inteira do cliente. Baseado no mapeamento interno entre planilhas de onboarding e eventos eSocial.',
+      eg2200: 'Admissão do trabalhador',
+      eg2206: 'Alteração de contrato de trabalho',
+      eg1200: 'Remuneração mensal (folha de pagamento)',
+      eg1210: 'Pagamentos efetuados ao trabalhador',
+      eg1020: 'Tabela de Lotações Tributárias (subáreas/departamentos)',
+      eg1010: 'Tabela de Rubricas (códigos de verbas da folha)',
+      th1: 'Planilha Buk',
+      th2: 'Evento(s) eSocial',
+      th3: 'Mecanismo no Portal Download',
+      r1c1: 'Colaboradores',
+      r1c2: '<span class="ev-chip">S-2200</span> grupo <code>trabalhador</code>',
+      r1c3: 'Filtro "todos os eventos entregues em determinado período"',
+      r1c3b: 'Filtro "todos os eventos entregues em determinado período"',
+      r2c1: 'Trabalhos',
+      r2c2: '<span class="ev-chip">S-2200</span> grupo <code>vinculo</code> (+ <code>indMV</code> vem do <span class="ev-chip">S-1200</span>)',
+      idem1: 'Idem',
+      idem2: 'Idem',
+      r3c1: 'Cargos',
+      r3c2: '<code>nmCargo</code>/<code>CBOCargo</code> — texto livre dentro do próprio S-2200',
+      r3c3: 'Vem embutido no S-2200; <strong>não existe S-1030</strong> — não precisa de filtro dedicado',
+      r4c1: 'Subáreas',
+      r4c2: '<span class="ev-chip">S-1020</span> Tabela de Lotações Tributárias',
+      r4c3: 'Filtro dedicado <strong>"Tabela de Lotações Tributárias"</strong>',
+      r5c1: 'Dependentes',
+      r5c2: '<span class="ev-chip">S-2200</span> grupo <code>dependente</code>',
+      r6c1: 'Recibos de Pagamento Históricos',
+      r6c2: '<span class="ev-chip">S-1200</span> (+ <span class="ev-chip">S-1210</span> se decidido gerar pagamento retroativo)',
+      r7c1: 'Referência para <code>codRubr</code>',
+      r7c2: '<span class="ev-chip">S-1010</span> Tabela de Rubricas',
+      r7c3: 'Filtro dedicado <strong>"Tabela de Rubricas"</strong>',
+      r8c1: 'Subáreas e Cargos',
+      r8c3: 'Estrutura interna Buk, não transmitida ao eSocial — não requer busca',
+      planTitle: 'Planejamento de importação: 12 meses fixos não bastam',
+      planLead: 'O foco aqui é o <strong style="color:var(--texto);">estado cadastral atual do colaborador</strong>, não só a continuidade de folha.',
+      lblProblema: 'Problema',
+      planProblema: 'O <strong>S-2200 (admissão)</strong> é transmitido uma única vez, às vezes anos atrás. Um filtro de "últimos 12 meses" não traz esse evento — só alterações recentes.',
+      lblAcao: 'Ação prática',
+      planAcao: 'Pedir ao cliente, logo no início, uma <strong>lista de CPFs com data de admissão</strong>, para dimensionar de antemão quantas janelas de 35 dias serão necessárias.',
+      lblDecisaoJanela: 'Decisão em aberto — como cobrir a janela',
+      planDecisao: '<strong>(a)</strong> Estender o filtro até a admissão mais antiga da base <em>(recomendado)</em>. <strong>(b)</strong> Usar o filtro "por trabalhador" como exceção pontual (reintroduz 1 pedido por CPF).',
+      toggleExpand: 'expandir tudo',
+      toggleCollapse: 'recolher tudo',
+      dayRail1: 'DIA 1',
+      dayRailNext: 'DIAS SEGUINTES',
+      dayRailClose: 'FECHAMENTO',
+      lane1: 'Dispara os pedidos — Portal Download',
+      lane2: 'Processamento e ingestão',
+      lane3: 'Reconciliação e ativação',
+      c1Title: 'Filtro "Tabela de Lotações Tributárias"',
+      c1Sub: '1 pedido dedicado',
+      c1Body: 'Cobre o histórico necessário (ver seção acima) para capturar o S-1020 mesmo se não retransmitido recentemente pelo cliente.',
+      c2Title: 'Filtro "Tabela de Rubricas"',
+      c2Body: 'Mesma lógica do filtro de Lotações — necessário para resolver <code style="background:var(--celeste);color:var(--azul-escuro);padding:1px 6px;border-radius:4px;font-weight:600;">codRubr</code> em <code style="background:var(--celeste);color:var(--azul-escuro);padding:1px 6px;border-radius:4px;font-weight:600;">Recibos de Pagamento Históricos</code>.',
+      c3Title: 'Filtro "todos os eventos entregues em determinado período"',
+      c3Sub: 'N pedidos em janelas de 35 dias — não mais um número fixo',
+      c3Body: '<strong>N deixou de ser fixo</strong> ("~11 pedidos") e virou variável: as janelas cobrem desde a admissão mais antiga da base até hoje (ver seção acima).',
+      kvLimite: 'Limite diário',
+      kvLimiteVal: 'Até 12 pedidos/dia; se N não couber, o restante entra na fila do dia seguinte',
+      kvInsumo: 'Insumo',
+      kvInsumoVal: 'Lista de intake do cliente (CPF + data de admissão)',
+      dia1Callout: 'Sem o BX (webservice do eSocial), não há como pré-validar o volume antes de disparar os pedidos — o dimensionamento de N depende só da qualidade dos dados de intake.',
+      c4Title: 'Acompanhamento do status do pedido',
+      c4Sub: 'Downloads → Consulta',
+      c4Body: 'Sem API pública: alguém confere a tela até o status virar <strong>"Disponível para Baixar"</strong>. Hoje é manual; um RPA poderia automatizar esse polling.',
+      c4Callout: 'Prazo real do processamento <strong>não é documentado</strong> — precisa validar antes de comprometer SLA.',
+      c5Title: 'Download do arquivo ZIP',
+      c5Sub: 'Coluna "Ações" da tela de Consulta',
+      c5Body: 'Clique manual. O arquivo expira em <strong>7 dias</strong> — perdendo o prazo, o pedido inteiro precisa ser refeito.',
+      c6Title: 'Organização em diretório de processamento',
+      c6Sub: 'ex.: /imports/{cliente_id}/download-portal/',
+      c6Body1: 'Convenção: <code style="background:var(--celeste);color:var(--azul-escuro);padding:1px 6px;border-radius:4px;font-weight:600;">/imports/{cliente_id}/download-portal/lote-{numero_pedido}.zip</code>.',
+      c6Body2: '<strong>Risco:</strong> depende de alguém seguir a convenção manualmente. <strong>Automatizável:</strong> um conector/RPA eliminaria o passo.',
+      c7Title: 'Extração do ZIP e leitura dos XMLs',
+      c7Sub: 'watcher no diretório de processamento',
+      c7Body: 'Um watcher dispara o processamento assim que cada ZIP chega — sem esperar todos os pedidos ficarem prontos.',
+      c8Title: 'Identificação da versão do leiaute',
+      c8Sub: 'por namespace do XML embutido',
+      c8Body: 'O namespace do XML interno indica a versão original do leiaute (S-1.0/1.2/1.3…) — o Portal Download preserva isso.',
+      c9Title: 'Ingestão incremental na base',
+      c9Sub: 'S-1020/S-1010 primeiro (referências), depois S-2200/S-2206/S-1200 por competência',
+      c9Body: 'A ordem importa: tabelas de referência (Lotações, Rubricas) entram primeiro para resolver os códigos citados pelos eventos de vínculo e folha. Cada pedido de 35 dias entra assim que é processado.',
+      c10Title: 'Fallback para divergências residuais',
+      c10Sub: 'sem BX, não há reconciliação instantânea por CPF',
+      c10Body: 'Com o BX (webservice do eSocial), um colaborador com dado incompleto é fechado na hora, consultando direto por CPF. Sem o BX, essa reconciliação instantânea não existe.',
+      c10Li1: '<strong>Opção 1:</strong> novo pedido "por trabalhador" no Portal (assíncrono, mesma fila de 12/dia)',
+      c10Li2: '<strong>Opção 2:</strong> correção manual pós-ativação',
+      c10Callout: 'Decidir isso <strong>antes de comprometer um SLA formal</strong>.',
+      c11Title: 'Atenção — Períodos Aquisitivos de férias',
+      c11Sub: 'limitação estrutural do eSocial, não do fluxo Buk',
+      c11Callout: 'O eSocial nunca transmitiu esse campo — nenhum canal (webservice ou Portal) consegue recuperá-lo, de nenhum fornecedor. Sem tratamento na revisão final, há risco de férias em dobro na primeira concessão pós-onboarding.',
+      c11Body: 'Confirmado em mais de um benchmark de mercado — item de checklist da revisão final, não pendência técnica.',
+      c12Title: 'Revisão final e ativação do cliente',
+      c12Sub: 'SLA ainda não comprometido formalmente nesta versão',
+      c12Body: 'Onboarding confere os dados antes de liberar o cliente. Sem o fechamento instantâneo que o webservice do eSocial (BX) oferece, o prazo formal só pode ser assumido depois de decidir o fallback de divergências (card acima) e o número real de janelas de 35 dias.',
+      oosTitle: 'Fora do escopo desta versão',
+      oosLead: 'Fica para uma fase futura — não descartado, só não usado nesta entrega.',
+      oos1: '<strong>Dados cadastrais do empregador e dos estabelecimentos, e processos administrativos/judiciais</strong> <span style="color:var(--texto-faint);">(S-1000, S-1005, S-1070)</span> — não referenciados pelas 7 planilhas atuais.',
+      oos2: '<strong>Eventos de Segurança e Saúde no Trabalho — SST</strong> <span style="color:var(--texto-faint);">(S-2240 e correlatos)</span>, como adicionais de insalubridade/periculosidade — possível extensão futura, não prioridade agora.',
+      oos3: '<strong>Evento de pagamento</strong> <span style="color:var(--texto-faint);">(S-1210)</span> — gerar ou não o pagamento retroativo é decisão de compliance, não técnica.',
+      oos4: '<strong>Toda a arquitetura via webservice do eSocial (BX)</strong> — visão de médio/longo prazo, não usada nesta entrega.',
+      riskTitle: 'Riscos específicos desta versão',
+      riskLead: 'Além dos já listados na estratégia principal.',
+      risk1a: 'Filtros de Lotações/Rubricas: vigente ou só o transmitido no período?',
+      risk1b: 'Precisa validar empiricamente — pode voltar vazio mesmo com dado ativo.',
+      risk2a: 'Nº de janelas de 35 dias depende da lista de intake',
+      risk2b: 'Lista incompleta = número de pedidos incerto.',
+      risk3a: 'Sem o webservice do eSocial (BX), fallback para divergências ainda em aberto',
+      risk3b: 'Ver card "Fallback para divergências residuais".',
+      risk4a: '<code>codLotacao</code> pode só aparecer no S-1200, não no S-2200',
+      risk4b: 'Se confirmado, ingestão de Subáreas espera o 1º S-1200 do colaborador.',
+      foot1: 'Recorte simplificado da estratégia principal de automação de importação eSocial, cruzado com o mapeamento entre planilhas de onboarding e eventos eSocial.',
+      foot2: 'Itens marcados como "decisão em aberto" ainda não têm resolução — não devem ser lidos como compromisso de produto ou SLA.',
+      navNextLabel: 'Ver mapeamento campo a campo das 7 planilhas →'
+    },
+    es: {
+      brand: '·buk·<span> Remuneraciones — Brasil</span>',
+      brandMeta: 'Onboarding eSocial · v2 · Solo Portal de Descarga',
+      docTitle: 'Onboarding eSocial v2 — Solo Portal de Descarga',
+      lead: 'Versión reducida del flujo de importación, enfocada en los datos que onboarding de Buk necesita',
+      legendStatus: 'Estado',
+      badgeAuto: 'automatizado',
+      badgeSemi: 'semiautomático',
+      badgeManual: 'manual',
+      badgeDecisao: 'decisión pendiente',
+      badgeAutomatable: 'automatizable',
+      scopeTitle: 'Alcance de datos priorizado',
+      scopeLead: 'Solo los eventos que alimentan las 7 planillas de onboarding hoy — no toda la capa de datos maestros del cliente. Basado en el mapeo interno entre planillas de onboarding y eventos eSocial.',
+      eg2200: 'Contratación del trabajador',
+      eg2206: 'Modificación de contrato de trabajo',
+      eg1200: 'Remuneración mensual (liquidación de sueldo)',
+      eg1210: 'Pagos efectuados al trabajador',
+      eg1020: 'Tabla de Centros Tributarios (subáreas/departamentos)',
+      eg1010: 'Tabla de Rubros (códigos de haberes/descuentos)',
+      th1: 'Planilla Buk',
+      th2: 'Evento(s) eSocial',
+      th3: 'Mecanismo en el Portal de Descarga',
+      r1c1: 'Colaboradores',
+      r1c2: '<span class="ev-chip">S-2200</span> grupo <code>trabajador</code>',
+      r1c3: 'Filtro "todos los eventos entregados en un período determinado"',
+      r1c3b: 'Filtro "todos los eventos entregados en un período determinado"',
+      r2c1: 'Trabajos',
+      r2c2: '<span class="ev-chip">S-2200</span> grupo <code>vínculo</code> (+ <code>indMV</code> viene del <span class="ev-chip">S-1200</span>)',
+      idem1: 'Ídem',
+      idem2: 'Ídem',
+      r3c1: 'Cargos',
+      r3c2: '<code>nmCargo</code>/<code>CBOCargo</code> — texto libre dentro del propio S-2200',
+      r3c3: 'Viene incluido en el S-2200; <strong>no existe S-1030</strong> — no requiere filtro dedicado',
+      r4c1: 'Subáreas',
+      r4c2: '<span class="ev-chip">S-1020</span> Tabla de Centros Tributarios',
+      r4c3: 'Filtro dedicado <strong>"Tabla de Centros Tributarios"</strong>',
+      r5c1: 'Dependientes',
+      r5c2: '<span class="ev-chip">S-2200</span> grupo <code>dependiente</code>',
+      r6c1: 'Recibos de Pago Históricos',
+      r6c2: '<span class="ev-chip">S-1200</span> (+ <span class="ev-chip">S-1210</span> si se decide generar pago retroactivo)',
+      r7c1: 'Referencia para <code>codRubr</code>',
+      r7c2: '<span class="ev-chip">S-1010</span> Tabla de Rubros',
+      r7c3: 'Filtro dedicado <strong>"Tabla de Rubros"</strong>',
+      r8c1: 'Subáreas y Cargos',
+      r8c3: 'Estructura interna de Buk, no transmitida al eSocial — no requiere búsqueda',
+      planTitle: 'Planificación de la importación: 12 meses fijos no bastan',
+      planLead: 'El foco aquí es el <strong style="color:var(--texto);">estado de datos maestros actual del colaborador</strong>, no solo la continuidad de la nómina.',
+      lblProblema: 'Problema',
+      planProblema: 'El <strong>S-2200 (contratación)</strong> se transmite una sola vez, a veces años atrás. Un filtro de "últimos 12 meses" no trae ese evento — solo modificaciones recientes.',
+      lblAcao: 'Acción práctica',
+      planAcao: 'Pedir al cliente, desde el inicio, una <strong>lista de CPF con fecha de contratación</strong>, para dimensionar de antemano cuántas ventanas de 35 días serán necesarias.',
+      lblDecisaoJanela: 'Decisión pendiente — cómo cubrir la ventana',
+      planDecisao: '<strong>(a)</strong> Extender el filtro hasta la contratación más antigua de la base <em>(recomendado)</em>. <strong>(b)</strong> Usar el filtro "por trabajador" como excepción puntual (reintroduce 1 solicitud por CPF).',
+      toggleExpand: 'expandir todo',
+      toggleCollapse: 'colapsar todo',
+      dayRail1: 'DÍA 1',
+      dayRailNext: 'DÍAS SIGUIENTES',
+      dayRailClose: 'CIERRE',
+      lane1: 'Lanza las solicitudes — Portal de Descarga',
+      lane2: 'Procesamiento e ingesta',
+      lane3: 'Reconciliación y activación',
+      c1Title: 'Filtro "Tabla de Centros Tributarios"',
+      c1Sub: '1 solicitud dedicada',
+      c1Body: 'Cubre el histórico necesario (ver sección anterior) para capturar el S-1020 aunque no haya sido retransmitido recientemente por el cliente.',
+      c2Title: 'Filtro "Tabla de Rubros"',
+      c2Body: 'Misma lógica que el filtro de Centros Tributarios — necesario para resolver <code style="background:var(--celeste);color:var(--azul-escuro);padding:1px 6px;border-radius:4px;font-weight:600;">codRubr</code> en <code style="background:var(--celeste);color:var(--azul-escuro);padding:1px 6px;border-radius:4px;font-weight:600;">Recibos de Pago Históricos</code>.',
+      c3Title: 'Filtro "todos los eventos entregados en un período determinado"',
+      c3Sub: 'N solicitudes en ventanas de 35 días — ya no es un número fijo',
+      c3Body: '<strong>N dejó de ser fijo</strong> ("~11 solicitudes") y pasó a ser variable: las ventanas cubren desde la contratación más antigua de la base hasta hoy (ver sección anterior).',
+      kvLimite: 'Límite diario',
+      kvLimiteVal: 'Hasta 12 solicitudes/día; si N no cabe, el resto entra en la cola del día siguiente',
+      kvInsumo: 'Insumo',
+      kvInsumoVal: 'Lista de intake del cliente (CPF + fecha de contratación)',
+      dia1Callout: 'Sin el BX (webservice del eSocial), no hay forma de prevalidar el volumen antes de lanzar las solicitudes — el dimensionamiento de N depende solo de la calidad de los datos de intake.',
+      c4Title: 'Seguimiento del estado de la solicitud',
+      c4Sub: 'Descargas → Consulta',
+      c4Body: 'Sin API pública: alguien revisa la pantalla hasta que el estado cambie a <strong>"Disponible para Descargar"</strong>. Hoy es manual; un RPA podría automatizar ese sondeo.',
+      c4Callout: 'El plazo real del procesamiento <strong>no está documentado</strong> — hay que validarlo antes de comprometer un SLA.',
+      c5Title: 'Descarga del archivo ZIP',
+      c5Sub: 'Columna "Acciones" de la pantalla de Consulta',
+      c5Body: 'Clic manual. El archivo expira en <strong>7 días</strong> — si se pierde el plazo, hay que rehacer toda la solicitud.',
+      c6Title: 'Organización en directorio de procesamiento',
+      c6Sub: 'ej.: /imports/{cliente_id}/download-portal/',
+      c6Body1: 'Convención: <code style="background:var(--celeste);color:var(--azul-escuro);padding:1px 6px;border-radius:4px;font-weight:600;">/imports/{cliente_id}/download-portal/lote-{numero_pedido}.zip</code>.',
+      c6Body2: '<strong>Riesgo:</strong> depende de que alguien siga la convención manualmente. <strong>Automatizable:</strong> un conector/RPA eliminaría el paso.',
+      c7Title: 'Extracción del ZIP y lectura de los XML',
+      c7Sub: 'watcher en el directorio de procesamiento',
+      c7Body: 'Un watcher dispara el procesamiento apenas llega cada ZIP — sin esperar que todas las solicitudes estén listas.',
+      c8Title: 'Identificación de la versión del layout',
+      c8Sub: 'por namespace del XML incluido',
+      c8Body: 'El namespace del XML interno indica la versión original del layout (S-1.0/1.2/1.3…) — el Portal de Descarga preserva eso.',
+      c9Title: 'Ingesta incremental en la base',
+      c9Sub: 'S-1020/S-1010 primero (referencias), luego S-2200/S-2206/S-1200 por período',
+      c9Body: 'El orden importa: las tablas de referencia (Centros Tributarios, Rubros) entran primero para resolver los códigos citados por los eventos de vínculo y nómina. Cada solicitud de 35 días entra apenas se procesa.',
+      c10Title: 'Plan B para divergencias residuales',
+      c10Sub: 'sin BX, no hay reconciliación instantánea por CPF',
+      c10Body: 'Con el BX (webservice del eSocial), un colaborador con datos incompletos se cierra al instante, consultando directo por CPF. Sin el BX, esa reconciliación instantánea no existe.',
+      c10Li1: '<strong>Opción 1:</strong> nueva solicitud "por trabajador" en el Portal (asíncrona, misma cola de 12/día)',
+      c10Li2: '<strong>Opción 2:</strong> corrección manual posactivación',
+      c10Callout: 'Definir esto <strong>antes de comprometer un SLA formal</strong>.',
+      c11Title: 'Atención — Períodos de vacaciones devengadas',
+      c11Sub: 'limitación estructural del eSocial, no del flujo Buk',
+      c11Callout: 'El eSocial nunca transmitió este campo — ningún canal (webservice o Portal) puede recuperarlo, de ningún proveedor. Sin tratamiento en la revisión final, hay riesgo de vacaciones duplicadas en el primer otorgamiento post-onboarding.',
+      c11Body: 'Confirmado en más de un benchmark de mercado — es un ítem de checklist de la revisión final, no una pendiente técnica.',
+      c12Title: 'Revisión final y activación del cliente',
+      c12Sub: 'SLA aún no comprometido formalmente en esta versión',
+      c12Body: 'Onboarding revisa los datos antes de liberar al cliente. Sin el cierre instantáneo que ofrece el webservice del eSocial (BX), el plazo formal solo puede asumirse después de definir el plan B de divergencias (tarjeta anterior) y el número real de ventanas de 35 días.',
+      oosTitle: 'Fuera del alcance de esta versión',
+      oosLead: 'Queda para una fase futura — no descartado, solo no usado en esta entrega.',
+      oos1: '<strong>Datos maestros del empleador y de los establecimientos, y procesos administrativos/judiciales</strong> <span style="color:var(--texto-faint);">(S-1000, S-1005, S-1070)</span> — no referenciados por las 7 planillas actuales.',
+      oos2: '<strong>Eventos de Seguridad y Salud en el Trabajo — SST</strong> <span style="color:var(--texto-faint);">(S-2240 y relacionados)</span>, como bonos de insalubridad/peligrosidad — posible extensión futura, no es prioridad ahora.',
+      oos3: '<strong>Evento de pago</strong> <span style="color:var(--texto-faint);">(S-1210)</span> — generar o no el pago retroactivo es una decisión de compliance, no técnica.',
+      oos4: '<strong>Toda la arquitectura vía webservice del eSocial (BX)</strong> — visión de mediano/largo plazo, no usada en esta entrega.',
+      riskTitle: 'Riesgos específicos de esta versión',
+      riskLead: 'Además de los ya listados en la estrategia principal.',
+      risk1a: 'Filtros de Centros Tributarios/Rubros: ¿vigente o solo lo transmitido en el período?',
+      risk1b: 'Hay que validarlo empíricamente — puede volver vacío aunque el dato esté activo.',
+      risk2a: 'N.º de ventanas de 35 días depende de la lista de intake',
+      risk2b: 'Lista incompleta = número de solicitudes incierto.',
+      risk3a: 'Sin el webservice del eSocial (BX), el plan B para divergencias sigue pendiente',
+      risk3b: 'Ver tarjeta "Plan B para divergencias residuales".',
+      risk4a: '<code>codLotacao</code> puede aparecer solo en el S-1200, no en el S-2200',
+      risk4b: 'Si se confirma, la ingesta de Subáreas espera el primer S-1200 del colaborador.',
+      foot1: 'Recorte simplificado de la estrategia principal de automatización de importación eSocial, cruzado con el mapeo entre planillas de onboarding y eventos eSocial.',
+      foot2: 'Los ítems marcados como "decisión pendiente" aún no tienen resolución — no deben leerse como un compromiso de producto o SLA.',
+      navNextLabel: 'Ver mapeo campo a campo de las 7 planillas →'
+    }
+  };
+
+  let currentLang = 'pt';
+  let expanded = false;
+
+  function applyLang(lang){
+    currentLang = lang;
+    localStorage.setItem('buk-esocial-lang', lang);
+    document.getElementById('htmlRoot').setAttribute('lang', lang === 'pt' ? 'pt-BR' : 'es-CL');
+    document.getElementById('pageTitle').textContent = I18N[lang].docTitle;
+    document.querySelectorAll('[data-i18n]').forEach(el => {
+      const key = el.getAttribute('data-i18n');
+      if (I18N[lang][key] !== undefined) el.innerHTML = I18N[lang][key];
+    });
+    document.getElementById('toggleAll').textContent = expanded ? I18N[lang].toggleCollapse : I18N[lang].toggleExpand;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.toggle('active', b.dataset.lang === lang));
+    const nextLink = document.getElementById('nextPageLink');
+    if (nextLink) nextLink.href = 'onboarding-esocial-mapeamento-campos_det.html?lang=' + lang;
+  }
+
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.addEventListener('click', () => applyLang(btn.dataset.lang));
+  });
+
+  const toggleBtn = document.getElementById('toggleAll');
+  toggleBtn.addEventListener('click', () => {
+    expanded = !expanded;
+    document.querySelectorAll('details.card').forEach(d => d.open = expanded);
+    toggleBtn.textContent = expanded ? I18N[currentLang].toggleCollapse : I18N[currentLang].toggleExpand;
+  });
+
+  const urlLang = new URLSearchParams(location.search).get('lang');
+  const savedLang = localStorage.getItem('buk-esocial-lang');
+  const initialLang = (urlLang === 'es' || urlLang === 'pt') ? urlLang : (savedLang === 'es' ? 'es' : 'pt');
+  applyLang(initialLang);
+</script>
+
+</body>
+</html>
